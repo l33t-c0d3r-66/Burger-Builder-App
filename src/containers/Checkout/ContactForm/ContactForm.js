@@ -6,6 +6,7 @@ import Input from '../../../components/UI/Input/Input';
 
 import cssClasses from './ContactForm.css';
 import axios from '../../../axios-orders';
+import input from '../../../components/UI/Input/Input';
 
 class ContactForm extends Component {
     state = {
@@ -86,9 +87,11 @@ class ContactForm extends Component {
                     ]
                 }, 
                 value: '',
+                valid: true
             }
         },
         loading: false,
+        formIsValid: false
     }
 
     orderHandler = (event) => {
@@ -117,7 +120,7 @@ class ContactForm extends Component {
     checkValidity(value, rules) {
         let isValid = true;
         if(rules === undefined)
-            return false;
+            return isValid;
         if(rules.required) {
             isValid = value.trim() !=='' && isValid;
         }
@@ -143,7 +146,11 @@ class ContactForm extends Component {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        this.setState({orderForm: updatedOrderForm});
+        let formIsValid = true;
+        for(let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
 
 
 
@@ -169,7 +176,7 @@ class ContactForm extends Component {
                             shouldValidate={formElement.config.validation}
                             touched={formElement.config.touched}/>
                 ))}
-                <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
+                <Button btnType="Success" clicked={this.orderHandler} disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
         );
         if(this.state.loading) {
