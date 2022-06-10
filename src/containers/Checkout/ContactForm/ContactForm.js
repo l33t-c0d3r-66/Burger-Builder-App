@@ -6,7 +6,6 @@ import Input from '../../../components/UI/Input/Input';
 
 import cssClasses from './ContactForm.css';
 import axios from '../../../axios-orders';
-import input from '../../../components/UI/Input/Input';
 
 class ContactForm extends Component {
     state = {
@@ -86,7 +85,7 @@ class ContactForm extends Component {
                         {value: 'cheapest', displayValue: 'Cheapest'},
                     ]
                 }, 
-                value: '',
+                value: 'fastest',
                 valid: true
             }
         },
