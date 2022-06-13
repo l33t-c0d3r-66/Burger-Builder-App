@@ -14,7 +14,7 @@ class CheckOut extends Component{
         this.props.history.replace('/checkout/contact-data');
     }
     render() {
-        let summary = <Redirect to="/"/>
+        let summary = <Redirect to="/" />
         if(this.props.ings) {
             summary = 
             <div>
@@ -33,7 +33,7 @@ class CheckOut extends Component{
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
+        ings: state.burgerBuilder.ingredients,
     }
 };
 

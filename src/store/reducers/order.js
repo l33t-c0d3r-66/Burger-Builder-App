@@ -1,4 +1,3 @@
-import { findAllByTestId } from '@testing-library/react';
 import * as actionTypes from '../actions/actionTypes';
 
 
@@ -27,8 +26,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PURCHASE_BURGER_FAILED:
             return {
                 ...state,
-                loading: false,
-
+                loading: false
             };
         default:
             return state;
