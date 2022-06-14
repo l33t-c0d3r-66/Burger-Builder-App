@@ -10,13 +10,15 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {combineReducers} from 'redux';
 import reducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/authentication';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     burgerBuilder: reducer,
-    order: orderReducer
+    order: orderReducer,
+    auth: authReducer
 })
 
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
