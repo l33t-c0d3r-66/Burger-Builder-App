@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import * as actions from './store/actions/index';
 
-import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import Logout from './containers/Authentication/Logout/Logout';
 
 class App extends Component {
@@ -20,29 +20,27 @@ class App extends Component {
 
   render() {
     let routes = (
-        <Switch>
-          <Route path="/" exact component={BurgerBuilder}></Route>
-          <Route path="/auth" component={Authentication}></Route>
-          <Redirect to= "/" />
-        </Switch>
-    );
-
-    if(this.props.isAuthenticated) {
-        routes = (
           <Switch>
             <Route path="/" exact component={BurgerBuilder}></Route>
-            <Route path="/checkout" component={CheckOut}></Route>
-            <Route path="/orders" component={Orders}></Route>
-            <Route path="/logout" component={Logout}></Route>
+            <Route path="/auth" component={Authentication}></Route>
+            <Redirect to="/" />
           </Switch>
         );
-    }
+      if(this.props.isAuthenticated) {
+          routes = (
+            <Switch>
+              <Route path="/" exact component={BurgerBuilder}></Route>
+              <Route path="/checkout" component={CheckOut}></Route>
+              <Route path="/orders" component={Orders}></Route>
+              <Route path="/logout" component={Logout}></Route>
+              <Redirect to="/" />
+            </Switch>
+          );
+      }
     return (
         <div className="App">
           <Layout>
-            
-              {/* With Switch Order matters so /checkout will be first */}
-              {routes}
+            {routes}
           </Layout>
         </div>
     );
@@ -51,7 +49,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token!=null
+    isAuthenticated: state.auth.token!==null
   };
 };
 
