@@ -62,3 +62,10 @@ export const logout = () => {
         type: actionTypes.AUTHENTICATION_LOGOUT
     };
 };
+
+export const setAuthenticationRedirectPath = (path) => {
+    return {
+        type: actionTypes.SET_AUTHENTICATION_REDIRECT_PATH,
+        path: path
+    };
+};
