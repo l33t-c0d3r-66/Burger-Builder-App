@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import cssClasses from './Authentication.css';
 import * as actions from '../../store/actions/index';
@@ -113,7 +114,7 @@ class Authentication extends Component {
                 config: this.state.controls[key],
             });
         }
-        const form = formElementsArray.map(formElement => (
+        let form = formElementsArray.map(formElement => (
             <Input key={formElement.id}
                 elementType={formElement.config.elementType} 
                 elementConfig={formElement.config.elementConfig}
@@ -123,9 +124,17 @@ class Authentication extends Component {
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}/>
         ));
+        if(this.props.loading) {
+            form = <Spinner />
+        }
+        let errorMsg = null;
+        if(this.props.error) {
+            errorMsg = <p>{this.props.error.message}</p>
+        }
         return (
             <div className={cssClasses.Authentication}>
                 <h1>{this.state.isSignUp?'SIGN UP': 'SIGN IN'}</h1>
+                {errorMsg}
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <Button btnType="Success">{this.state.isSignUp?'SIGN UP': 'SIGN IN'}</Button>
@@ -136,10 +145,17 @@ class Authentication extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isSignUp) => dispatch(actions.authenticate(email, password, isSignUp))
     };
 }
 
-export default connect(null, mapDispatchToProps)(Authentication);
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication);

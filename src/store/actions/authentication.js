@@ -40,9 +40,25 @@ export const authenticate = (email, password, isSignUp) => {
         .then(response => {
             console.log(response);
             dispatch(authenticationSuccess(response.data.idToken, response.data.localId));
+            dispatch(checkTokenTimeOut(response.data.expiresIn));
         })
         .catch(err =>{
-            dispatch(authenticationFailed(err));
+            dispatch(authenticationFailed(err.response.data.error));
         });
+    };
+};
+
+export const checkTokenTimeOut = (expirationTime) => {
+    return dispatch => {
+        setTimeout(()=> {
+            dispatch(logout());
+            // expects time in miliseconds
+        }, expirationTime * 1000);
+    };
+};
+
+export const logout = () => {
+    return {
+        type: actionTypes.AUTHENTICATION_LOGOUT
     };
 };
