@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
 
 
 export const authenticationStart = () => {
@@ -24,39 +23,18 @@ export const authenticationFailed = (error) => {
 };
 
 export const authenticate = (email, password, isSignUp) => {
-    return dispatch => {
-        // Authenticate the user
-        dispatch(authenticationStart());
-        const authData = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        }
-        let url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+process.env.REACT_APP_API_KEY;
-        if(!isSignUp) {
-            url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+process.env.REACT_APP_API_KEY;
-        }
-        axios.post(url, authData)
-        .then(response => {
-            const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 100)
-            localStorage.setItem("token",  response.data.idToken);
-            localStorage.setItem("expirationDate", expirationDate);
-            localStorage.setItem("userId", response.data.localId);
-            dispatch(authenticationSuccess(response.data.idToken, response.data.localId));
-            dispatch(checkTokenTimeOut(response.data.expiresIn));
-        })
-        .catch(err =>{
-            dispatch(authenticationFailed(err.response.data.error));
-        });
+    return {
+        type: actionTypes.AUTHENTICATE_USER,
+        email: email,
+        password: password,
+        isSignUp: isSignUp
     };
 };
 
 export const checkTokenTimeOut = (expirationTime) => {
-    return dispatch => {
-        setTimeout(()=> {
-            dispatch(logout());
-            // expects time in miliseconds
-        }, expirationTime * 1000);
+    return {
+        type: actionTypes.AUTHENTICATION_CHECK_TIME_OUT,
+        expirationTime: expirationTime
     };
 };
 
@@ -65,6 +43,12 @@ export const logout = () => {
         type: actionTypes.AUTHENTICATION_INITIATE_LOGOUT
     };
 };
+
+export const logOutSucceed = () => {
+    return {
+        type: actionTypes.AUTHENTICATION_LOGOUT
+    };
+}
 
 export const setAuthenticationRedirectPath = (path) => {
     return {
