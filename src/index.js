@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,6 +11,8 @@ import reducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
 import authReducer from './store/reducers/authentication';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import {watchAuthentication} from './store/sagas/index';
 
 const composeEnhancers = (process.env.NODE_ENV === "development" ?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__:null) || compose;
 
@@ -21,8 +22,12 @@ const rootReducer = combineReducers({
     auth: authReducer
 })
 
-const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
+const sageMiddleWare = createSagaMiddleware();
 
+
+const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk, sageMiddleWare)));
+
+sageMiddleWare.run(watchAuthentication);
 
 const app = (
     <Provider store={store}>
