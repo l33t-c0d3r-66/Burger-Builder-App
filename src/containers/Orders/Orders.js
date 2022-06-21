@@ -28,6 +28,7 @@ class Orders extends Component {
         }
         return (
             <div>
+                {!this.props.loading?<h2 style={{textAlign: 'center'}}>My Orders</h2>:null}
                 {order}
             </div>
         );

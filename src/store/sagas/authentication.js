@@ -7,12 +7,12 @@ export function* logOutSaga(action) {
     yield localStorage.removeItem("token");
     yield localStorage.removeItem("expirationDate");
     yield localStorage.removeItem("userId");
-    yield put(actions.logOutSucceed);
+    yield put(actions.logOutSucceed());
 };
 
 export function* checkTokenTimeOutSage(action) {
     yield delay(action.expirationTime * 1000);
-    yield put(actions.logout());
+    yield put(actions.logout);
 };
 
 export function* authenticateSaga(action) {
