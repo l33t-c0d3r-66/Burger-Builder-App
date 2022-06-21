@@ -11,7 +11,7 @@
 ### `6. Routing and Local State Management`
 ### `7. Forms and Custom Form Validation`
 ### `8. Redux for Global State Management`
-### `9. Authentication and Gurading Routes`
+### `9. Authentication and Guarding Routes`
 ### `10. Redux-Saga and Other Concepts` 
  
 
