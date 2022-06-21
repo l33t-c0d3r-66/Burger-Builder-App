@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# Burger Builder App:
+<li> Burger Builder is a Web Application created using ReactJS and Firebase </li>
+<li> This project uses both Class Based Components and Functional Components </li>
+<li> This Project uses different ReactJS Concepts </li>
+
+### `1. Class Based Components`
+### `2. Functional Components`
+### `3. Prop Types and Validation`
+### `4. Axious to Make Requests`
+### `5. Handling Errors`
+### `6. Routing and Local State Management`
+### `7. Forms and Custom Form Validation`
+### `8. Redux for Global State Management`
+### `9. Authentication and Gurading Routes`
+### `10. Redux-Saga and Other Concepts` 
+ 
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +85,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  
+ 
+## Project Screenshots:
+ 
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss1.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss2.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss3.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss4.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss5.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/Burger-Builder-App/blob/master/screenshots/ss6.PNG">
+  
+  
