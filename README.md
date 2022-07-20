@@ -1,6 +1,7 @@
 # Burger Builder App:
 <li> Burger Builder is a Web Application created using ReactJS and Firebase </li>
 <li> This project uses both Class Based Components and Functional Components </li>
+<li> This Project has lot of reusable components. Feel free to use </li>
 <li> This Project uses different ReactJS Concepts </li>
 
 ### `1. Class Based Components`
