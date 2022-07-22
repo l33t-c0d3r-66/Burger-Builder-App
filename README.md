@@ -7,7 +7,7 @@
 ### `1. Class Based Components`
 ### `2. Functional Components`
 ### `3. Prop Types and Validation`
-### `4. Axious to Make Requests`
+### `4. Axios to Make Requests`
 ### `5. Handling Errors`
 ### `6. Routing and Local State Management`
 ### `7. Forms and Custom Form Validation`
